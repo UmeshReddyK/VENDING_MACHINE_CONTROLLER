@@ -29,6 +29,20 @@ For a quick demonstration of the VMC in action, you can explore the EDA Playgrou
 - **Regression-ready** with automated simulation and reporting  
 
 ---
+## 🧩 Testbench Architecture  
+
+The UVM testbench is built with a **layered architecture**, making it modular, reusable, and scalable.  
+It consists of four main agents (APB, Currency, Item Selection, and Dispense), connected through virtual interfaces and monitored by a central **Scoreboard**.  
+
+Below is the high-level architecture of the testbench environment:  
+
+![Testbench Architecture](docs/Tb_Architecture.png)  
+
+- **APB Agent**: Drives and monitors APB configuration transactions.  
+- **Currency Agent**: Models user currency insertion.  
+- **Item Selection Agent**: Handles item selection transactions.  
+- **Dispense Agent**: Monitors DUT outputs (dispensed item, change).  
+- **Scoreboard**: Collects expected vs actual outputs and ensures correctness.  
 
 ##  Testcases Implemented  
 -  **Sanity Test** – Basic end-to-end transaction  
