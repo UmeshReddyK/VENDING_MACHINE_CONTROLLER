@@ -1,91 +1,53 @@
-🏪 Vending Machine Controller – UVM Verification Project
-📌 Overview
+# ​ Vending Machine Controller – UVM Verification Project
 
-This project focuses on the functional verification of a Vending Machine Controller (VMC) RTL design using SystemVerilog UVM methodology.
+##  Overview  
+This repository hosts the **Vending Machine Controller (VMC)** RTL design and its **functional verification environment**. The RTL, written in Verilog, supports up to **1024 programmable items** with dynamic configuration via an APB interface. The accompanying UVM-based testbench validates functionality, change calculation, and operational integrity across normal and corner cases.
 
-The RTL design (developed in Verilog HDL) models a configurable vending machine capable of handling up to 1024 items, each with programmable price and stock information.
+For a quick demonstration of the VMC in action, you can explore the EDA Playground environment here:
+- **Live Simulation**: [View and run on EDA Playground](https://edaplayground.com/x/WDaL)
 
-The verification environment (developed in UVM) validates the correctness, robustness, and completeness of the VMC across a wide range of operational and corner-case scenarios, ensuring that the design is reliable for FPGA/ASIC deployment.
+---
 
-🛠️ Features
-RTL Design (Verilog HDL)
+##  Features  
 
-Supports up to 1024 items with configurable memory.
+### RTL Design (Verilog HDL)  
+- **Up to 1024 items**: Each with configurable price and availability  
+- **Configuration Mode**: Via APB interface (run on `pclk`)  
+- **Operational Mode**: Handles item selection, currency insertion, dispense logic, change return  
+- **Dual-Port Memory**: Safe crossing between configuration and operational clock domains  
+- **FSM-Based Control**: Ensures deterministic, high-speed, real-time behavior  
 
-Configuration Mode: Uses APB interface for dynamic programming of price & stock.
+### Verification Environment (SystemVerilog UVM)  
+- Modular agents for:  
+  - APB configuration (`apb_agent`)  
+  - Currency input (`currency_agent`)  
+  - Item selection (`item_sel_agent`)  
+  - Output monitoring (`item_disp_agent`)  
+- **Scoreboard reference model** for automated self-checking of correctness  
+- **Coverage-driven verification** — both functional and code coverage  
+- Supports both **directed** and **constrained-random** test stimulus  
+- **Regression-ready** with automated simulation and reporting  
 
-Operational Mode: Handles item selection, currency insertion, dispense, and change calculation.
+---
 
-Implements dual-port memory for safe clock-domain crossing.
+##  Testcases Implemented  
+-  **Sanity Test** – Basic end-to-end transaction  
+-  **APB Interface Test** – Verification of configuration read/write  
+-  **Multi-Currency Test** – Accumulation of funds and correct dispense  
+-  **Multi-Item Test** – Sequential purchases verifying inventory management  
+-  **Invalid Selection Test** – Handling of out-of-stock and invalid IDs  
+-  **Reset Behavior Test** – Ensuring clean system reset clears state  
+-  **Stress Test** – Overlapping user transactions to test robustness  
 
-FSM-based control for real-time response without software processors.
+---
 
-Verification Environment (SystemVerilog UVM)
+##  Results  
+- Achieved **>95% functional coverage** across feature space  
+- Verified correct:  
+  - Item dispense logic  
+  - Change calculation accuracy  
+  - Inventory decrement and dispense count updates  
+- Detected and validated all edge conditions (e.g., insufficient funds, invalid operations)  
+- Delivered a **scalable, reusable UVM testbench** platform that can be extended to future SoC systems  
 
-Built using UVM layered architecture.
-
-Agents implemented for:
-
-APB Agent – drives/monitors APB transactions.
-
-Currency Agent – models currency input.
-
-Item Selection Agent – models user item selection.
-
-Item Dispense Agent – monitors dispense and change outputs.
-
-Scoreboard & Reference Model to check expected vs actual behavior.
-
-Coverage-driven verification (functional + code coverage).
-
-Supports directed + constrained-random testing.
-
-Regression-ready with automated test execution and reporting.
-
-✅ Testcases Implemented
-
-Sanity Test – basic end-to-end transaction.
-
-APB Read/Write Test – verifies configuration interface.
-
-Multiple Currency Insertion – checks accumulation and correct dispense.
-
-Multiple Item Transactions – validates stock decrement and dispense count.
-
-Invalid Item Test – ensures correct handling of invalid or out-of-stock items.
-
-Reset Test – validates reset clears internal states.
-
-Concurrent User Test – stress test with overlapping transactions.
-
-📊 Results
-
-Achieved >95% functional coverage.
-
-Verified correctness of:
-
-Item selection and dispensing.
-
-Currency accumulation and change calculation.
-
-Stock decrement and inventory tracking.
-
-Caught and validated edge cases (e.g., insufficient funds, invalid selection).
-
-Delivered a scalable, reusable UVM environment for future vending machine designs.
-
-
-🎯 Learning Outcomes
-
-Practical experience with SystemVerilog UVM methodology.
-
-Designed a self-checking, coverage-driven testbench.
-
-Learned regression automation and result reporting.
-
-Exposure to real-world SoC verification practices.
-
-📜 License
-
-Developed under the SURE Trust Internship Program.
-Free to use for educational and learning purposes.
+---
