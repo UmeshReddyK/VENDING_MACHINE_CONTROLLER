@@ -36,7 +36,8 @@ It consists of four main agents (APB, Currency, Item Selection, and Dispense), c
 
 Below is the high-level architecture of the testbench environment:  
 
-![Testbench Architecture](docs/Tb_Architecture.png)  
+!<img width="938" height="502" alt="Tb_Architecture" src="https://github.com/user-attachments/assets/b8dec0e6-f16c-4468-a8c0-442a3f3953e0" />
+ 
 
 - **APB Agent**: Drives and monitors APB configuration transactions.  
 - **Currency Agent**: Models user currency insertion.  
